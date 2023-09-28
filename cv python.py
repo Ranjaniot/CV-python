@@ -1,18 +1,13 @@
 import cv2
 import numpy as np
+from matplotlib import pyplot as plt
 
-img = cv2.imread('play.png')
-rows,cols,ch = img.shape
+img = cv2.imread('image.png')
 
-pts1 = np.float32([[50,50],[200,50],[50,200]])
-pts2 = np.float32([[10,100],[200,50],[100,250]])
+blur = cv2.medianBlur(img, 5)
 
-M = cv2.getAffineTransform(pts1,pts2)
-
-dst = cv2.warpAffine(img,M,(cols,rows))
-
-
-
-cv2.imshow('img',dst)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+plt.subplot(121), plt.imshow(img), plt.title('Original')
+plt.xticks([]), plt.yticks([])
+plt.subplot(122), plt.imshow(blur), plt.title('Blurred')
+plt.xticks([]), plt.yticks([])
+plt.show()
